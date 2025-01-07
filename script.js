@@ -1,5 +1,9 @@
 ;(async () => {
-	// initializing the database
+	const SQL = await initSqlJs({
+		locateFile: (file) =>
+			`https://cdn.jsdelivr.net/npm/sql.js/dist/sql-wasm.wasm`,
+	})
+
 	const response = await fetch('data.db.gz')
 	const buffer = await response.arrayBuffer()
 	const decompressedBuffer = await pako.inflate(buffer)
@@ -157,8 +161,10 @@
 			i.checked = g.includes(i.id)
 		}
 
-		document.getElementById('neu-radio').checked = document.getElementById('Neutral').checked
-		document.getElementById('fem-radio').checked = document.getElementById('Female').checked
+		document.getElementById('neu-radio').checked =
+			document.getElementById('Neutral').checked
+		document.getElementById('fem-radio').checked =
+			document.getElementById('Female').checked
 
 		const type = localStorage.getItem('type').slice(1, -1).split("', '")
 		for (let i of Array.from(document.getElementsByName('type'))) {
@@ -181,7 +187,9 @@
 
 	if (window.matchMedia('(max-width: 576px)').matches) {
 		for (let i of l) {
-			document.querySelector(`th[data-field="${i}"]`).setAttribute('data-visible', 'false')
+			document
+				.querySelector(`th[data-field="${i}"]`)
+				.setAttribute('data-visible', 'false')
 		}
 	}
 })()
