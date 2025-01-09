@@ -119,7 +119,7 @@
 	}
 
 	function insertAllRows() {
-		// insert 10 records into table
+		// insert all records into table
 		while (row < rowCount) {
 			table.bootstrapTable('append', {
 				institute: result[row][0],
